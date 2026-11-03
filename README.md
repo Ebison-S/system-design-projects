@@ -8,7 +8,7 @@ The focus is on design: identifying the entities, deciding what each one is resp
 
 | Project | Description | Language | Status |
 | --- | --- | --- | --- |
-| [Parking Lot](parking_lot/) | Models floors, parking spots, vehicles and tickets | Java | In progress |
+| [Parking Lot](parking_lot/) | Models floors, spots, vehicles, tickets and payments, with pluggable spot allocation, pricing and payment strategies | Java | In progress |
 
 ## Repository Layout
 
@@ -16,7 +16,11 @@ Each project has its own top-level folder and is independent of the others. Insi
 
 ```text
 parking_lot/
-├── entity/    # Domain models
-├── enums/     # Fixed sets of values, such as types and statuses
-└── service/   # Application logic
+├── entity/      # Domain models
+├── enums/       # Fixed sets of values, such as types and statuses, and their allowed transitions
+├── exception/   # Domain-specific exceptions
+├── service/     # Application logic that coordinates entities and strategies
+└── strategy/    # Interchangeable behaviour, such as spot allocation, pricing and payment
 ```
+
+Projects are plain Java with no frameworks, so the design stays the focus.
