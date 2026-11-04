@@ -55,7 +55,7 @@ public class Main {
         System.out.println ("Parked at spot: " + ticket.getSpot ().getSpotId ());
 
         PaymentResult paymentResult = parkingService.exitVehicle (ticket);
-        System.out.println ("Payment: " + paymentResult.getPaymentStatus () + "\ntxn_id: " + paymentResult.getTransactionId ());
+        System.out.println ("Payment: " + paymentResult.getPaymentStatus () + "\ntxn_id: " + paymentResult.getTransactionId ().orElse ("N/A"));
 
         System.out.println ("-----");
 
