@@ -15,7 +15,7 @@ public class ParkingService {
     private AllocationStrategy allocationStrategy;
     private PaymentService paymentService;
 
-    ParkingService (
+    public ParkingService (
         ParkingLot parkingLot,
         PricingStrategy pricingStrategy,
         AllocationStrategy allocationStrategy,

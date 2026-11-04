@@ -6,6 +6,10 @@ public class ParkingLot {
     String parkingLotId;
     List <Floor> floors;
 
+    public ParkingLot (List <Floor> floors) {
+        this.floors = floors;
+    }
+
     public List <Floor> getFloors () {
         return floors;
     }

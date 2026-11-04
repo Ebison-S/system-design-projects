@@ -2,7 +2,11 @@ package parking_lot.entity.vehicles;
 
 import parking_lot.enums.VehicleType;
 
-class Car extends Vehicle {
+public class Car extends Vehicle {
+    public Car (String vehicleNumber) {
+        super (vehicleNumber);
+    }
+    
     @Override 
     public VehicleType getType () {
         return VehicleType.CAR;
