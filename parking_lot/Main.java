@@ -33,10 +33,10 @@ public class Main {
             new Spot ("F-1", SpotType.COMPACT)
         );
 
-        Floor groundFloor = new Floor (groundFloorSpots);
-        Floor firstFloor = new Floor (firstFloorSpots);
+        Floor groundFloor = new Floor ("F-0", groundFloorSpots);
+        Floor firstFloor = new Floor ("F-1", firstFloorSpots);
 
-        return new ParkingLot (List.of (groundFloor, firstFloor));
+        return new ParkingLot ("LOT-1", List.of (groundFloor, firstFloor));
     }
 
     public static void main (String[] args) {

@@ -17,7 +17,7 @@ public class Spot {
         String floorId,
         SpotType spotType
     ) {
-        this.spotId = UUID.randomUUID ().toString ();;
+        this.spotId = UUID.randomUUID ().toString ();
         this.floorId = floorId;
         this.spotType = spotType;
         this.spotStatus = SpotStatus.AVAILABLE;
