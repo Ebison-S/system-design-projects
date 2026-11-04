@@ -7,9 +7,11 @@ import parking_lot.entity.ParkingLot;
 import parking_lot.entity.PaymentResult;
 import parking_lot.entity.Spot;
 import parking_lot.entity.Ticket;
+import parking_lot.entity.vehicles.Bike;
 import parking_lot.entity.vehicles.Car;
 import parking_lot.entity.vehicles.Vehicle;
 import parking_lot.enums.SpotType;
+import parking_lot.exception.NoSpotAvailableException;
 import parking_lot.service.ParkingService;
 import parking_lot.service.PaymentService;
 import parking_lot.strategy.allocation.FirstAvailable;
@@ -46,6 +48,7 @@ public class Main {
             new FirstAvailable (), paymentService
         );
 
+        // 1. Happy Path
         Vehicle car = new Car ("JH-10-M-4232");
         Ticket ticket = parkingService.enterVehicle (car);
 
@@ -53,5 +56,25 @@ public class Main {
 
         PaymentResult paymentResult = parkingService.exitVehicle (ticket);
         System.out.println ("Payment: " + paymentResult.getPaymentStatus () + "\ntxn_id: " + paymentResult.getTransactionId ());
+
+        System.out.println ("-----");
+
+        // 2. Lot full: there's only one bike spot
+        parkingService.enterVehicle (new Bike ("KA-02-1111"));
+        parkingService.enterVehicle (new Bike ("KA-02-2222"));
+        try {
+            parkingService.enterVehicle (new Bike ("KA-03-3333"));
+        } catch (NoSpotAvailableException e) {
+            System.out.println ("[Error] : " + e.getMessage ());
+        }
+
+        System.out.println ("-----");
+
+        // 3. Invalid state transition: exiting with the same ticket twice
+        try {
+            parkingService.exitVehicle (ticket);
+        } catch (IllegalStateException e) {
+            System.out.println ("[Error] : " + e.getMessage ());
+        }
     }
 }
